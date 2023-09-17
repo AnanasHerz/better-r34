@@ -1,0 +1,48 @@
+/* Style for the search bar container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*height: 100vh;*/
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Style for the search bar itself */
+.search-bar {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Style for the search button (optional) */
+.search-button {
+    background-color: #9882f7;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+.custom-image {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    align-items: center;
+}
