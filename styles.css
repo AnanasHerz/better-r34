@@ -25,13 +25,17 @@
 
 /* Style for the search button (optional) */
 .search-button {
-    background-color: #9882f7;
+    background-color: #630bba;
     color: #fff;
     border: none;
     border-radius: 25px;
     padding: 10px 20px;
     margin-left: 10px;
     cursor: pointer;
+}
+
+.search-button:hover {
+	background-color: #760dde;
 }
 
 .image-container {
