@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(function(error) {
             console.error('Error fetching images:', error);
+            alert(`There are no results for ${encodeURIComponent(searchTerm)}.`)
         });
     });
 });
