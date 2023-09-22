@@ -25,11 +25,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageContainer.innerHTML = "";
                 // Loop through the data and create img elements
                 for (var i = 0; i < data.length; i++) {
-                    var imgElement = document.createElement("img");
-                    imgElement.src = data[i].file_url;
-                    imgElement.classList.add("custom-image");
-                    // Append the img element to the container
-                    imageContainer.appendChild(imgElement);
+                    ext = data[i].file_url.split(".")[3];
+                    valid_ext = ["png", "jpg", "jpeg", "gif"]
+                    if (valid_ext.includes(ext)) {
+                        var imgElement = document.createElement("img");
+                        imgElement.src = data[i].file_url;
+                        imgElement.loading = "lazy";
+                        imgElement.classList.add("custom-image");
+                        // Append the img element to the container
+                        imageContainer.appendChild(imgElement);   
+                    }
                 }
             })
             .catch(function(error) {
