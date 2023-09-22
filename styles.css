@@ -37,12 +37,15 @@
 .search-button:hover {
 	background-color: #760dde;
 }
-
-.image-container {
+.socials {
     display: flex;
-    flex-direction: column; /* Stack images vertically */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .custom-image {
     margin-left: 25%;
