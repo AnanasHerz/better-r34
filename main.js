@@ -3,6 +3,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchInput = document.getElementById("search-input");
     var limit = 1000;
 
+    searchInput.addEventListener("keyup", function(event) {
+        // Check if the Enter key (key code 13) is pressed
+        if (event.key === "Enter") {
+            // Trigger a click event on the search button
+            searchButton.click();
+        }
+    });
+
     searchButton.addEventListener("click", () => {
         const searchTerm = searchInput.value;
 
