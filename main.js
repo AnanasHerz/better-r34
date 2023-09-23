@@ -23,16 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if (index >= 0 && index < postarray.length) {
                 imageContainer.innerHTML = "";
                 pageContainer.innerHTML = ""; // Clear previous images
-                var href = `https://rule34.xxx/index.php?page=post&s=view&id=${idarray[index]}`
-                var hrefContainer = document.createElement('a');
-                hrefContainer.href = href;
-                hrefContainer.target = '_blank';
                 var pageElement = document.createElement('img');
                 pageElement.src = postarray[index];
                 //pageElement.loading = "lazy";
                 pageElement.classList.add("page-image");
-                pageContainer.appendChild(hrefContainer);
-                hrefContainer.appendChild(pageElement);
+                pageContainer.appendChild(pageElement);
             }
         }
         function nextImage() {
@@ -90,13 +85,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         var imgElement = document.createElement("img");
                         imgElement.src = data[i].sample_url;
                         imgElement.loading = "lazy";
-                        var href = `https://rule34.xxx/index.php?page=post&s=view&id=${data[i].id}`
-                        var hrefContainer = document.createElement('a');
-                        hrefContainer.href = href;
-                        hrefContainer.target = '_blank';
                         imgElement.classList.add("custom-image");
-                        pageContainer.appendChild(hrefContainer);
-                        hrefContainer.appendChild(imgElement);
+                        pageContainer.appendChild(imgElement);
                     }
                 }
             })
