@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageContainer = document.getElementById("imageContainer");
     const pageContainer = document.getElementById("readContainer");
     var checkbox = document.getElementById("demoCheckbox");
+    document.cookie = "visited=true; path=/";
     var limit = 1000;
     let imageIndex = 0;
     let postarray = [];
@@ -24,10 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 imageContainer.innerHTML = "";
                 pageContainer.innerHTML = ""; // Clear previous images
                 var pageElement = document.createElement('img');
+                var hrefElement = document.createElement('a');
                 pageElement.src = postarray[index];
-                //pageElement.loading = "lazy";
+                hrefElement.href = `https://rule34.xxx/index.php?page=post&s=view&id=${idarray[index]}`
+                hrefElement.target = '_blank';
                 pageElement.classList.add("page-image");
-                pageContainer.appendChild(pageElement);
+                pageContainer.appendChild(hrefElement);
+                hrefElement.appendChild(pageElement);
             }
         }
         function nextImage() {
@@ -50,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 pageContainer.innerHTML = "";
                 imageContainer.innerHTML = "";
                 postarray = [];
+                idarray = [];
                 for (var i = 0; i < data.length; i++) {
                     const ext = data[i].sample_url.split(".")[3];
                     const valid_ext = ["png", "jpg", "jpeg", "gif"];
@@ -65,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(function(error) {
                 console.error(error);
             });
-            alert('Use the arrow keys to switch between images.');
         }
         else {
             fetch(apiUrl)
@@ -83,10 +87,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     const valid_ext = ["png", "jpg", "jpeg", "gif"];
                     if (valid_ext.includes(ext)) {
                         var imgElement = document.createElement("img");
+                        var hrefElement = document.createElement('a');
+                        hrefElement.href = `https://rule34.xxx/index.php?page=post&s=view&id=${data[i].id}`
+                        hrefElement.target = '_blank';
                         imgElement.src = data[i].sample_url;
                         imgElement.loading = "lazy";
                         imgElement.classList.add("custom-image");
-                        pageContainer.appendChild(imgElement);
+                        pageContainer.appendChild(hrefElement);
+                        hrefElement.appendChild(imgElement);
                     }
                 }
             })
@@ -140,4 +148,23 @@ document.addEventListener("DOMContentLoaded", function() {
         // Fetch API data based on the new search term
         fetchApiData(searchInput.value);
     });
+    function hasVisited() {
+        // Split the cookies string into an array of cookies
+        const cookiesArray = document.cookie.split(';');
+      
+        // Iterate through the cookies and check if the "visited" cookie exists
+        for (let i = 0; i < cookiesArray.length; i++) {
+          const cookie = cookiesArray[i].trim();
+          if (cookie.startsWith("visited=")) {
+                return true; // The "visited" cookie exists
+            }
+        }
+      
+        return false; // The "visited" cookie does not exist
+    }
+    if (!hasVisited()) {
+        if (checkbox.checked) {
+            alert('Use the arrow keys to switch between images.');
+        }
+    }
 });
