@@ -4,18 +4,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageContainer = document.getElementById("imageContainer");
     const pageContainer = document.getElementById("readContainer");
     var checkbox = document.getElementById("demoCheckbox");
-    document.cookie = "visited=true; path=/";
     var limit = 1000;
     let imageIndex = 0;
     let postarray = [];
     let idarray = [];
 
-    // Function to get the 'search' query parameter from the URL
+    if (!document.cookie.includes('visited=')) {
+        alert('Warning, this site is for adults only!')
+        document.cookie = 'visited=true; path=/;'
+    }
+
     function getQueryParameter() {
         const params = new URLSearchParams(window.location.search);
         return params.get("search");
     }
-
     // Function to fetch API data based on the search term
     function fetchApiData(searchTerm) {
         // Construct the API URL with the query parameter
@@ -46,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
             displayPageImage(imageIndex);
         }
         if (checkbox.checked) {
+            if (!document.cookie.includes('reading=')) {
+                alert('Use the arrow keys for viewing the next images.')
+                document.cookie = 'reading=true; path=/;'
+            }
             fetch(apiUrl)
             .then(function(response) {
                 return response.json();
@@ -148,23 +154,4 @@ document.addEventListener("DOMContentLoaded", function() {
         // Fetch API data based on the new search term
         fetchApiData(searchInput.value);
     });
-    function hasVisited() {
-        // Split the cookies string into an array of cookies
-        const cookiesArray = document.cookie.split(';');
-      
-        // Iterate through the cookies and check if the "visited" cookie exists
-        for (let i = 0; i < cookiesArray.length; i++) {
-          const cookie = cookiesArray[i].trim();
-          if (cookie.startsWith("visited=")) {
-                return true; // The "visited" cookie exists
-            }
-        }
-      
-        return false; // The "visited" cookie does not exist
-    }
-    if (!hasVisited()) {
-        if (checkbox.checked) {
-            alert('Use the arrow keys to switch between images.');
-        }
-    }
 });
