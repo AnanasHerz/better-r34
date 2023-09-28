@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         if (checkbox.checked) {
             if (!document.cookie.includes('reading=')) {
-                alert('Use the arrow keys for viewing the next images.')
-                document.cookie = 'reading=true; path=/;'
+                alert('Use the arrow keys for viewing the next images.');
+                document.cookie = 'reading=true; path=/;';
             }
             fetch(apiUrl)
             .then(function(response) {
