@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchInput = document.getElementById("search-input");
     const imageContainer = document.getElementById("imageContainer");
     const pageContainer = document.getElementById("readContainer");
-    var checkbox = document.getElementById("demoCheckbox");
+    var checkbox = document.getElementById('demoCheckbox');
+    //var userAgent = navigator.userAgent;
     var limit = 1000;
     let imageIndex = 0;
     let postarray = [];
@@ -13,6 +14,29 @@ document.addEventListener("DOMContentLoaded", function() {
         alert('Warning, this site is for adults only!')
         document.cookie = 'visited=true; path=/;'
     }
+
+    /*if (userAgent.match(/Android|iPhone|iPad|iPod/i)) {
+        console.log("Mobile OS");
+    }
+    else if (userAgent.match(/Windows|Mac|Linux/i)) {
+        var checkboxContainer = document.createElement('div');
+        checkboxContainer.classList.add('checkbox');
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'demoCheckbox';
+        checkbox.name = 'checkbox';
+        checkbox.value = '1';
+        var checkboxText = document.createElement('label');
+        checkboxText.for = 'demoCheckbox';
+        checkboxText.innerHTML = 'Reading view';
+        checkbox.appendChild(checkboxContainer);
+        checkbox.appendChild(checkboxText);
+        console.log("Computer OS");
+    }
+    else {
+        // Code for other or unknown OS
+        console.log("Other/Unknown OS");
+    }*/
 
     function getQueryParameter() {
         const params = new URLSearchParams(window.location.search);
